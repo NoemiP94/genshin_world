@@ -3,6 +3,7 @@ package noemi.genshin_world.security;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import noemi.genshin_world.entities.User;
+import noemi.genshin_world.exceptions.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,5 +23,14 @@ public class JWTTools {
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 *24* 7))
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
                 .compact();
+    }
+
+    //method to verify token
+    public void verifyToken(String token){
+        try{
+            Jwts.parser().verifyWith(Keys.hmacShaKeyFor(secret.getBytes())).build().parse(token);
+        }catch(Exception e){
+            throw new UnauthorizedException("There are problems with token!");
+        }
     }
 }
