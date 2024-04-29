@@ -1,5 +1,6 @@
 package noemi.genshin_world.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"password", "authorities", "enabled", "credentialsNonExpired", "accountNonExpired", "accountNonLocked"})
 public class User implements UserDetails {
     @Id
     @GeneratedValue
