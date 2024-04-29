@@ -1,6 +1,8 @@
 package noemi.genshin_world.entities;
 
+
 import jakarta.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
