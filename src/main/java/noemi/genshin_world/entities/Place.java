@@ -10,16 +10,16 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class Degree {
+public class Place {
     @Id
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
-    private int level;
+    private String image;
     @Column(columnDefinition = "TEXT")
     private String description;
     @ManyToOne
-    @JoinColumn(name = "constellation_id")
-    private Constellation constellation_id;
+    @JoinColumn(name = "region_id")
+    private Region region_id;
 }

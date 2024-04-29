@@ -4,22 +4,28 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import noemi.genshin_world.entities.enums.PieceType;
+import noemi.genshin_world.entities.enums.Stars;
 
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-public class Degree {
+public class Piece {
     @Id
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
-    private int level;
+    private String image;
     @Column(columnDefinition = "TEXT")
     private String description;
+    @Enumerated(EnumType.STRING)
+    private PieceType pieceType;
+    @Enumerated(EnumType.STRING)
+    private Stars stars;
     @ManyToOne
-    @JoinColumn(name = "constellation_id")
-    private Constellation constellation_id;
+    @JoinColumn(name = "artifactSet_id")
+    private ArtifactSet artifactSet_id;
 }

@@ -20,8 +20,7 @@ public class Constellation {
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
-    // list di degree
-    //one to many
+    //A constellation has many degrees
     @OneToMany(mappedBy = "constellation_id")
     private List<Degree> degreesList;
 }
