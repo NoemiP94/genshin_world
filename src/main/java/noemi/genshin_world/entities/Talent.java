@@ -11,22 +11,18 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-public class Enemy {
+public class Talent {
     @Id
     @GeneratedValue
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
     @Column(columnDefinition = "TEXT")
-    private String description;
-    private String image;
-    private String codeName;
-    private String place;
-    //many to many con material
-    @ManyToMany(mappedBy = "enemyList")
-    @JoinTable(name = "enemy_name",
-            joinColumns = @JoinColumn(name = "enemy_id"),
+    private String info;
+    //many-to-many with material
+    @ManyToMany(mappedBy = "talentList")
+    @JoinTable(name = "talent_name",
+            joinColumns = @JoinColumn(name = "talent_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> rewards;
-
+    private List<Material> necessaryMaterials;
 }

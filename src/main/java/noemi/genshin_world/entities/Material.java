@@ -41,6 +41,12 @@ public class Material {
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "weapon_id"))
     private List<Weapon> weaponList;
+    //many-to-many with talent
+    @ManyToMany(mappedBy = "necessaryMaterials")
+    @JoinTable(name = "material_name",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "talent_id"))
+    private List<Talent> talentList;
 
 
 }
