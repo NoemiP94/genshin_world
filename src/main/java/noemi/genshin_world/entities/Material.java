@@ -1,6 +1,6 @@
 package noemi.genshin_world.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +36,7 @@ public class Material {
             inverseJoinColumns = @JoinColumn(name = "domain_id"))
     private List<Domain> domainList;
     //many-to-many with weapon
-    @ManyToMany(mappedBy = "necessaryMaterials")
+    @ManyToMany(mappedBy = "necessaryWeaponMaterials")
     @JoinTable(name = "material_name",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "weapon_id"))

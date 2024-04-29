@@ -1,13 +1,13 @@
 package noemi.genshin_world.entities;
 
-import jakarta.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +36,7 @@ public class Character {
     private List<Talent> talentList;
     //many-to-many with artifactSet
     @ManyToMany(mappedBy = "characterList")
-    @JoinTable(name = "character_name",
+    @JoinTable(name = "artifactSet_character",
                 joinColumns = @JoinColumn(name = "character_id"),
                 inverseJoinColumns = @JoinColumn(name = "artifactSet_id"))
     private List<ArtifactSet> artifactSetList;

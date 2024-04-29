@@ -1,9 +1,6 @@
 package noemi.genshin_world.security;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
 import noemi.genshin_world.entities.User;
 import noemi.genshin_world.exceptions.UnauthorizedException;
 import noemi.genshin_world.services.UserService;
@@ -14,6 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -34,7 +35,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             jwtTools.verifyToken(token);
             String id = jwtTools.extractIdFromToken(token);
             User currentUser = userService.findById(UUID.fromString(id));
-            Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null, currentUser.getAuthorities());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
         }
