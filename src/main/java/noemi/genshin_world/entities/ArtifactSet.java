@@ -22,4 +22,10 @@ public class ArtifactSet {
     //An artifactSet has many pieces
     @OneToMany(mappedBy = "artifactSet_id")
     private List<Piece> pieceList;
+    //many-to-many with character
+    @ManyToMany(mappedBy = "artifactSetList")
+    @JoinTable(name = "artifactSet_name",
+                joinColumns = @JoinColumn(name = "artifactSet_id"),
+                inverseJoinColumns = @JoinColumn(name = "character_id"))
+    private List<Character> characterList;
 }

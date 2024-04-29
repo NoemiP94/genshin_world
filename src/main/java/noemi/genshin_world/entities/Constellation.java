@@ -1,9 +1,6 @@
 package noemi.genshin_world.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +20,8 @@ public class Constellation {
     //A constellation has many degrees
     @OneToMany(mappedBy = "constellation_id")
     private List<Degree> degreesList;
+    //One-to-One with character
+    @OneToOne
+    @JoinColumn(name = "character_id")
+    private Character character;
 }

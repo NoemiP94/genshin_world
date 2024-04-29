@@ -28,4 +28,10 @@ public class Weapon {
             joinColumns = @JoinColumn(name = "weapon_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> necessaryMaterials;
+    //many-to-many with character
+    @ManyToMany(mappedBy = "weaponList")
+    @JoinTable(name = "weapon_name",
+            joinColumns = @JoinColumn(name = "weapon_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id"))
+    private List<Character> characterList;
 }

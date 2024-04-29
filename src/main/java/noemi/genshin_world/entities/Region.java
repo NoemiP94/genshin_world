@@ -29,5 +29,7 @@ public class Region {
     //A region has many domains
     @OneToMany(mappedBy = "region_id")
     private List<Domain> domainList;
-
+    //A region has many characters
+    @OneToMany(mappedBy = "region_id")
+    private List<Character> characterList;
 }

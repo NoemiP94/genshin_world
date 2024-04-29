@@ -25,4 +25,8 @@ public class Talent {
             joinColumns = @JoinColumn(name = "talent_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> necessaryMaterials;
+    //many-to-one with character
+    @ManyToOne
+    @JoinColumn(name = "character_id")
+    private Character character_id;
 }
