@@ -1,20 +1,15 @@
-package noemi.genshin_world.payloads.domain;
+package noemi.genshin_world.payloads.goal;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.UUID;
 
-public record DomainDTO(
+public record GoalDTO(
         @NotEmpty(message = "This field cannot be empty")
         String name,
         @NotEmpty(message = "This field cannot be empty")
-        String place,
-        @NotEmpty(message = "This field cannot be empty")
-        String domainType,
+        String description,
         @NotNull(message = "This field cannot be null")
-        List<UUID> rewards_id,
-        @NotNull(message = "This field cannot be null")
-        UUID region_id
+        UUID mainGoal_id
 ) {
 }
