@@ -1,6 +1,6 @@
 package noemi.genshin_world.exceptions;
 
-import noemi.genshin_world.payloads.ErrorDTO;
+import noemi.genshin_world.payloads.exception.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -4,6 +4,7 @@ package noemi.genshin_world.security;
 import noemi.genshin_world.entities.User;
 import noemi.genshin_world.exceptions.UnauthorizedException;
 import noemi.genshin_world.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

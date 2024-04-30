@@ -1,4 +1,4 @@
-package noemi.genshin_world.payloads;
+package noemi.genshin_world.payloads.exception;
 
 import java.time.LocalDateTime;
 
