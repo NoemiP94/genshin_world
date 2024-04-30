@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,10 +24,7 @@ public class Enemy {
     private String codeName;
     private String place;
     //many to many con material
-    @ManyToMany(mappedBy = "enemyList")
-    @JoinTable(name = "enemy_name",
-            joinColumns = @JoinColumn(name = "enemy_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> rewards;
+    @ManyToMany(mappedBy = "enemies")
+    private List<Material> rewards = new ArrayList<>();
 
 }

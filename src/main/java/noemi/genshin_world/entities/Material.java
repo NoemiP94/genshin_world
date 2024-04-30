@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import noemi.genshin_world.entities.enums.MaterialType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,35 +25,35 @@ public class Material {
     @Enumerated(EnumType.STRING)
     private MaterialType materialType;
     //many to many with enemy
-    @ManyToMany(mappedBy = "rewards")
-    @JoinTable(name = "material_name",
+    @ManyToMany
+    @JoinTable(name = "enemy_material",
                 joinColumns = @JoinColumn(name = "material_id"),
                 inverseJoinColumns = @JoinColumn(name = "enemy_id"))
-    private List<Enemy> enemyList;
+    private List<Enemy> enemies = new ArrayList<>();
     //many-to-many with domain
-    @ManyToMany(mappedBy = "rewards")
-    @JoinTable(name = "material_name",
+    @ManyToMany
+    @JoinTable(name = "domain_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "domain_id"))
-    private List<Domain> domainList;
+    private List<Domain> domains = new ArrayList<>();
     //many-to-many with weapon
-    @ManyToMany(mappedBy = "necessaryWeaponMaterials")
-    @JoinTable(name = "material_name",
+    @ManyToMany
+    @JoinTable(name = "weapon_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "weapon_id"))
-    private List<Weapon> weaponList;
+    private List<Weapon> weapons = new ArrayList<>();
     //many-to-many with talent
-    @ManyToMany(mappedBy = "necessaryMaterials")
-    @JoinTable(name = "material_name",
+    @ManyToMany
+    @JoinTable(name = "talent_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "talent_id"))
-    private List<Talent> talentList;
+    private List<Talent> talentList = new ArrayList<>();
     //many-to-many with characters
-    @ManyToMany(mappedBy = "ascensionMaterials")
-    @JoinTable(name = "material_name",
+    @ManyToMany
+    @JoinTable(name = "character_material",
             joinColumns = @JoinColumn(name = "material_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id"))
-    private List<Character> characterList;
+    private List<Character> characters = new ArrayList<>();
 
 
 }

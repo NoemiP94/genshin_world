@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,10 +23,7 @@ public class Talent {
     private String info;
     //many-to-many with material
     @ManyToMany(mappedBy = "talentList")
-    @JoinTable(name = "talent_name",
-            joinColumns = @JoinColumn(name = "talent_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> necessaryMaterials;
+    private List<Material> necessaryMaterials = new ArrayList<>();
     //many-to-one with character
     @ManyToOne
     @JoinColumn(name = "character_id")

@@ -8,6 +8,7 @@ import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,28 +37,22 @@ public class Character {
     private List<Talent> talentList;
     //many-to-many with artifactSet
     @ManyToMany(mappedBy = "characterList")
-    @JoinTable(name = "artifactSet_character",
-                joinColumns = @JoinColumn(name = "character_id"),
-                inverseJoinColumns = @JoinColumn(name = "artifactSet_id"))
-    private List<ArtifactSet> artifactSetList;
+    private List<ArtifactSet> artifactSetList = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private WeaponType weaponType;
     //many-to-many with weapon
-    @ManyToMany(mappedBy = "characterList")
-    @JoinTable(name = "character_name",
+    @ManyToMany
+    @JoinTable(name = "character_weapon",
             joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "weapon_id"))
-    private List<Weapon> weaponList;
+    private List<Weapon> favWeapons = new ArrayList<>();
     //A character has one region
     @ManyToOne
     @JoinColumn(name = "region_id")
     private Region region_id;
     //A character has many materials
-    @ManyToMany(mappedBy = "characterList")
-    @JoinTable(name = "character_name",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> ascensionMaterials;
+    @ManyToMany(mappedBy = "characters")
+    private List<Material> ascensionMaterials = new ArrayList<>();
 
 
 }

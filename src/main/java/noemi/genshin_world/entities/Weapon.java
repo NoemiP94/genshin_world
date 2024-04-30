@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,15 +24,9 @@ public class Weapon {
     @Column(columnDefinition = "TEXT")
     private String details;
     //many-to-many with material
-    @ManyToMany(mappedBy = "weaponList")
-    @JoinTable(name = "weapon_name",
-            joinColumns = @JoinColumn(name = "weapon_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> necessaryWeaponMaterials;
+    @ManyToMany(mappedBy = "weapons")
+    private List<Material> materials = new ArrayList<>();
     //many-to-many with character
-    @ManyToMany(mappedBy = "weaponList")
-    @JoinTable(name = "weapon_name",
-            joinColumns = @JoinColumn(name = "weapon_id"),
-            inverseJoinColumns = @JoinColumn(name = "character_id"))
-    private List<Character> characterList;
+    @ManyToMany(mappedBy = "favWeapons")
+    private List<Character> characterList = new ArrayList<>();
 }
