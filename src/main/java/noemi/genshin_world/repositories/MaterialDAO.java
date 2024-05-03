@@ -4,8 +4,13 @@ import noemi.genshin_world.entities.Material;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface MaterialDAO extends JpaRepository<Material, UUID> {
+    public Optional<Material> findByName(String name);
+
+    //findByMaterialType
+    public Optional<Material> findByMaterialType(String materialType);
 }
