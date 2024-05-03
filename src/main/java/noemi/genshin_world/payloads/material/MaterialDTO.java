@@ -6,6 +6,7 @@ public record MaterialDTO(
         @NotEmpty(message = "This field cannot be empty")
         String name,
         @NotEmpty(message = "This field cannot be empty")
+
         String image,
         @NotEmpty(message = "This field cannot be empty")
         String description,

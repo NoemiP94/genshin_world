@@ -20,4 +20,10 @@ public class ExceptionHandler {
     public ErrorDTO handleNotFound(NotFoundException e){
         return new ErrorDTO(e.getMessage(), LocalDateTime.now());
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public ErrorDTO handleIllegalArgument(IllegalArgumentException e){
+        return new ErrorDTO(e.getMessage(), LocalDateTime.now());
+    }
 }
