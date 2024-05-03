@@ -1,6 +1,7 @@
 package noemi.genshin_world.controller;
 
 import noemi.genshin_world.entities.Material;
+import noemi.genshin_world.entities.enums.MaterialType;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.material.MaterialDTO;
 import noemi.genshin_world.payloads.material.MaterialResponseDTO;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -24,13 +26,13 @@ public class MaterialController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAuthority('ADMIN','USER')")
-    public MaterialResponseDTO createMaterial(@RequestBody @Validated MaterialDTO material, MultipartFile image, BindingResult validation){
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public MaterialResponseDTO createMaterial(@Validated @RequestBody MaterialDTO material, BindingResult validation){
         if(validation.hasErrors()){
             System.out.println(validation.getAllErrors());
             throw new BadRequestException("There are errors in the request!");
         } else {
-            Material newMaterial = materialService.saveMaterial(material, image);
+            Material newMaterial = materialService.saveMaterial(material);
             return new MaterialResponseDTO(newMaterial.getId());
 
         }
@@ -48,26 +50,36 @@ public class MaterialController {
     public Material getMaterialById(@PathVariable UUID id){
         return materialService.findById(id);
     }
+
+    //findbyidandupdate
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public Material getMaterialByIdAndUpdate(@PathVariable UUID id, @RequestBody MaterialDTO newBody){
+        return materialService.findByIdAndUpdate(id, newBody);
+    }
+    //findbyidanddelete
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public void getMaterialByIdAndDelete(@PathVariable UUID id){
+        materialService.findByIdAndDelete(id);
+    }
+
+    //uploadimage
+    @PostMapping("/{id}/image")
+    public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException{
+        return materialService.uploadImage(id, body);
+    }
+
     //findbyname
-    @GetMapping("/detail/{name}")
+    @GetMapping("/detail/name/{name}")
     public Material getMaterialByName(@PathVariable String name){
         return materialService.findByName(name);
     }
     //findByMaterialType
-    @GetMapping("/detail/{type}")
-    public Material getMaterialByType(@PathVariable String type){
-        return materialService.findByMaterialType(type);
-    }
-    //findbyidandupdate
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN','USER')")
-    public Material getMaterialByIdAndUpdate(@PathVariable UUID id, @RequestBody MaterialDTO newBody, MultipartFile image){
-        return materialService.findByIdAndUpdate(id, newBody, image);
-    }
-    //findbyidanddelete
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN','USER')")
-    public void getMaterialByIdAndDelete(@PathVariable UUID id){
-        materialService.findByIdAndDelete(id);
+    @GetMapping("/detail/type/{materialType}")
+    public Page<Material> getMaterialByType(@RequestParam(defaultValue = "0") int page,
+                                            @RequestParam(defaultValue = "10") int size,
+                                            @RequestParam(defaultValue = "id") String sort, @PathVariable MaterialType materialType){
+        return materialService.findByMaterialType(page, size, sort, materialType);
     }
 }

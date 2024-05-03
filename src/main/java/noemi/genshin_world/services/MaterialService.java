@@ -27,15 +27,12 @@ public class MaterialService {
     private Cloudinary cloudinary;
 
     //save
-    public Material saveMaterial(MaterialDTO body, MultipartFile imageFile){
+    public Material saveMaterial(MaterialDTO body){
         Material material = new Material();
         material.setName(body.name());
         material.setDescription(body.description());
 
         try{
-            String imageUrl = uploadImage(imageFile);
-            material.setImage(imageUrl);
-
             String materialTypeString = body.materialType();
             MaterialType materialType = MaterialType.valueOf(materialTypeString);
             material.setMaterialType(materialType);
@@ -56,15 +53,12 @@ public class MaterialService {
     }
 
     //update
-    public Material findByIdAndUpdate(UUID id, MaterialDTO newBody,MultipartFile newImageFile){
+    public Material findByIdAndUpdate(UUID id, MaterialDTO newBody){
         Material found = materialDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
         found.setName(newBody.name());
         found.setDescription(newBody.description());
 
         try{
-            String imageUrl = uploadImage(newImageFile);
-            found.setImage(imageUrl);
-
             String materialTypeString = newBody.materialType();
             MaterialType materialType = MaterialType.valueOf(materialTypeString);
             found.setMaterialType(materialType);
@@ -80,8 +74,11 @@ public class MaterialService {
     }
 
     //uploadImage
-    public String uploadImage(MultipartFile file) throws IOException{
+    public String uploadImage(UUID id, MultipartFile file) throws IOException{
+        Material material = materialDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
         String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        material.setImage(url);
+        materialDAO.save(material);
         return url;
     }
 
@@ -91,8 +88,9 @@ public class MaterialService {
     }
 
     //findByMaterialType
-    //controllare se funziona =D
-    public Material findByMaterialType(String materialType){
-        return materialDAO.findByMaterialType(materialType).orElseThrow(()-> new NotFoundException("Materials with type " + materialType + " not found!"));
+    public Page<Material> findByMaterialType(int page, int size, String orderBy,MaterialType materialType){
+        Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
+        return materialDAO.findByMaterialType(materialType, pageable);
     }
+
 }

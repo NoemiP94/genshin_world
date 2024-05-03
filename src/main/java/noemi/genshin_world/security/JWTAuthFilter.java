@@ -23,20 +23,22 @@ import java.util.UUID;
 public class JWTAuthFilter extends OncePerRequestFilter {
     @Autowired
     private JWTTools jwtTools;
+
     @Autowired
     private UserService userService;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         if(authHeader == null || !authHeader.startsWith("Bearer ")){
-            throw new UnauthorizedException("Please, insert a valid bearer token!");
+            throw new UnauthorizedException("Please insert a valid bearer token!");
         } else {
-            String token = authHeader.substring(7); // delete first 7 characters of token -> "Bearer "
+            String token = authHeader.substring(7);
             jwtTools.verifyToken(token);
             String id = jwtTools.extractIdFromToken(token);
             User currentUser = userService.findById(UUID.fromString(id));
-            Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null, currentUser.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
         }
@@ -45,6 +47,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
         String servletPath = request.getServletPath();
-        return servletPath.startsWith("/auth/");
+        return servletPath.startsWith("/auth/") || servletPath.equals("/material/getall") || servletPath.startsWith("/material/detail");
     }
 }
