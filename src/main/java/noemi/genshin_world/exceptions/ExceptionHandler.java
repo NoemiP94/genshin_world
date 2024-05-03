@@ -26,4 +26,17 @@ public class ExceptionHandler {
     public ErrorDTO handleIllegalArgument(IllegalArgumentException e){
         return new ErrorDTO(e.getMessage(), LocalDateTime.now());
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorDTO handleBadRequest(BadRequestException e){
+        return new ErrorDTO(e.getMessage(), LocalDateTime.now());
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorDTO handleGenericException(Exception e){
+        e.printStackTrace();
+        return new ErrorDTO("Server error!", LocalDateTime.now());
+    }
 }
