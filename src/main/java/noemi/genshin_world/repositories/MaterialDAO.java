@@ -12,8 +12,8 @@ import java.util.UUID;
 
 @Repository
 public interface MaterialDAO extends JpaRepository<Material, UUID> {
-    public Optional<Material> findByName(String name);
+    Optional<Material> findByName(String name);
 
     //findByMaterialType
-    public Page<Material> findByMaterialType(MaterialType materialType, Pageable pageable);
+    Page<Material> findByMaterialType(MaterialType materialType, Pageable pageable);
 }

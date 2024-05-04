@@ -7,7 +7,6 @@ import java.util.UUID;
 public record PieceDTO(
         @NotEmpty(message = "This field cannot be empty")
         String name,
-        @NotEmpty(message = "This field cannot be empty")
         String image,
         @NotEmpty(message = "This field cannot be empty")
         String description,
