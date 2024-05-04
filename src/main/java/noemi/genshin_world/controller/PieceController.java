@@ -91,7 +91,7 @@ public class PieceController {
     }
 
     //findbypiecetype
-    @GetMapping("/detail/stars/{stars}")
+    @GetMapping("/detail/type/{pieceType}")
     public Page<Piece> getPieceByPieceType(@RequestParam(defaultValue = "0") int page,
                                        @RequestParam(defaultValue = "10") int size,
                                        @RequestParam(defaultValue = "id") String sort, @PathVariable PieceType pieceType){
