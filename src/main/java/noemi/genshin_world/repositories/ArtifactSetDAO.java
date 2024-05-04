@@ -4,8 +4,11 @@ import noemi.genshin_world.entities.ArtifactSet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface ArtifactSetDAO extends JpaRepository<ArtifactSet, UUID> {
+
+    Optional<ArtifactSet> findByName(String name);
 }
