@@ -26,7 +26,7 @@ public class MaterialController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public MaterialResponseDTO createMaterial(@Validated @RequestBody MaterialDTO material, BindingResult validation){
         if(validation.hasErrors()){
             System.out.println(validation.getAllErrors());
@@ -66,6 +66,7 @@ public class MaterialController {
 
     //uploadimage
     @PostMapping("/{id}/image")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException{
         return materialService.uploadImage(id, body);
     }
