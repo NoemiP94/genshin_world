@@ -1,11 +1,11 @@
 package noemi.genshin_world.controller;
 
-import noemi.genshin_world.entities.Piece;
+
 import noemi.genshin_world.entities.Region;
-import noemi.genshin_world.entities.enums.PieceType;
+
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.exceptions.BadRequestException;
-import noemi.genshin_world.payloads.piece.PieceDTO;
+
 import noemi.genshin_world.payloads.region.RegionDTO;
 import noemi.genshin_world.payloads.region.RegionResponseDTO;
 import noemi.genshin_world.services.RegionService;
@@ -33,7 +33,7 @@ public class RegionController {
             System.out.println(validation.getAllErrors());
             throw new BadRequestException("There are errors in the request!");
         } else {
-            Region newRegion = new Region();
+            Region newRegion = regionService.saveRegion(region);
             return new RegionResponseDTO(newRegion.getId());
         }
     }

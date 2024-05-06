@@ -19,7 +19,7 @@ public class Region {
     private UUID id;
     private String name;
     @Enumerated(EnumType.STRING)
-    private VisionType vision;
+    private VisionType visionType;
     @Column(columnDefinition = "TEXT")
     private String description;
     //A region has many places

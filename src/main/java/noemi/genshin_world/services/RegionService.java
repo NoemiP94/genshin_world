@@ -28,7 +28,7 @@ public class RegionService {
         try {
             String visionTypeString = body.vision();
             VisionType visionType = VisionType.valueOf(visionTypeString);
-            region.setVision(visionType);
+            region.setVisionType(visionType);
         } catch (Exception e){
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
@@ -52,7 +52,7 @@ public class RegionService {
         try {
             String visionTypeString = newBody.vision();
             VisionType visionType = VisionType.valueOf(visionTypeString);
-            found.setVision(visionType);
+            found.setVisionType(visionType);
         } catch (Exception e){
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
