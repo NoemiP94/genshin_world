@@ -47,7 +47,9 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
         String servletPath = request.getServletPath();
-        return servletPath.startsWith("/auth/") || servletPath.equals("/material/getall") || servletPath.startsWith("/material/detail")|| servletPath.equals("/artifactset/getall") || servletPath.startsWith("/artifactset/detail")
-                || servletPath.equals("/piece/getall") || servletPath.startsWith("/piece/detail");
+        return servletPath.startsWith("/auth/")
+                || servletPath.equals("/material/getall") || servletPath.startsWith("/material/detail")|| servletPath.equals("/artifactset/getall") || servletPath.startsWith("/artifactset/detail")
+                || servletPath.equals("/piece/getall") || servletPath.startsWith("/piece/detail")
+                || servletPath.equals("/region/getall") || servletPath.startsWith("/region/detail");
     }
 }
