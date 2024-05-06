@@ -113,8 +113,13 @@ public class PieceService {
     }
     //findbypiecetype
     public Page<Piece> findByPieceType(int page, int size, String orderBy, PieceType pieceType){
-        Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
-        return pieceDAO.findByPieceType(pieceType, pageable);
+        try{
+            Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
+            return pieceDAO.findByPieceType(pieceType, pageable);
+        } catch (Exception e){
+            throw new NotFoundException("Pieces with pieceType " + pieceType + " not found!");
+        }
+
     }
 
 }
