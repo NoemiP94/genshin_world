@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -33,14 +34,9 @@ public class DomainService {
     public Domain saveDomain(DomainDTO body){
         Domain domain = new Domain();
         Region region = regionService.findById(body.region_id());
-        List<Material> materials = new ArrayList<>();
-        for(UUID rewardId : body.rewards_id()){
-            Material material = materialService.findById(rewardId);
-            materials.add(material);
-        }
         domain.setName(body.name());
         domain.setPlace(body.place());
-        domain.setRegion_id(region);
+        domain.setRegionId(region);
         try{
             String domainTypeString = body.domainType();
             DomainType domainType = DomainType.valueOf(domainTypeString);
@@ -50,6 +46,13 @@ public class DomainService {
         }
 
         return domainDAO.save(domain);
+    }
+
+    public void addMaterialToDomain(UUID domainId, UUID materialId){
+        Domain domain = domainDAO.findById(domainId).orElseThrow(()-> new NotFoundException(domainId));
+        Material material = materialService.findById(materialId);
+        domain.getMaterialList().add(material);
+        domainDAO.save(domain);
     }
 
     public Page<Domain> findAllDomains(int page, int size, String orderBy){
@@ -64,14 +67,9 @@ public class DomainService {
     public Domain findByIdAndUpdate(UUID id, DomainDTO newBody){
         Domain found = domainDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
         Region newRegion = regionService.findById(newBody.region_id());
-        List<Material> newMaterials = new ArrayList<>();
-        for(UUID rewardId : newBody.rewards_id()){
-            Material material = materialService.findById(rewardId);
-            newMaterials.add(material);
-        }
         found.setName(newBody.name());
         found.setPlace(newBody.place());
-        found.setRegion_id(newRegion);
+        found.setRegionId(newRegion);
         try{
             String domainTypeString = newBody.domainType();
             DomainType domainType = DomainType.valueOf(domainTypeString);
@@ -102,7 +100,7 @@ public class DomainService {
 
     }
 
-    public Page<Domain> findByRegion(int page, int size, String orderBy,UUID id){
+    public Page<Domain> findByRegionId(int page, int size, String orderBy,UUID id){
         try{
             Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
             return domainDAO.findByRegionId(id, pageable);

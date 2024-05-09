@@ -14,5 +14,5 @@ import java.util.UUID;
 public interface DomainDAO extends JpaRepository<Domain, UUID> {
     Optional<Domain> findByName(String name);
     Page<Domain> findByDomainType(DomainType domainType, Pageable pageable);
-    Page<Domain> findByRegionId(UUID region_id, Pageable pageable);
+    Page<Domain> findByRegionId(UUID regionId, Pageable pageable);
 }

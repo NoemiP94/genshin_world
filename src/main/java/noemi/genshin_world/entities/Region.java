@@ -27,7 +27,7 @@ public class Region {
     private List<Place> placeList;
     private String archon;
     //A region has many domains
-    @OneToMany(mappedBy = "region_id")
+    @OneToMany(mappedBy = "regionId")
     private List<Domain> domainList;
     //A region has many characters
     @OneToMany(mappedBy = "region_id")

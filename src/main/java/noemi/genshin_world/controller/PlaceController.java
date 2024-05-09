@@ -1,12 +1,9 @@
 package noemi.genshin_world.controller;
 
 import noemi.genshin_world.entities.Place;
-import noemi.genshin_world.entities.Region;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.place.PlaceDTO;
 import noemi.genshin_world.payloads.place.PlaceResponseDTO;
-import noemi.genshin_world.payloads.region.RegionDTO;
-import noemi.genshin_world.payloads.region.RegionResponseDTO;
 import noemi.genshin_world.services.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

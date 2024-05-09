@@ -1,6 +1,8 @@
 package noemi.genshin_world.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"domains"})
 public class Material {
     @Id
     @GeneratedValue
@@ -31,10 +34,7 @@ public class Material {
                 inverseJoinColumns = @JoinColumn(name = "enemy_id"))
     private List<Enemy> enemies = new ArrayList<>();
     //many-to-many with domain
-    @ManyToMany
-    @JoinTable(name = "domain_material",
-            joinColumns = @JoinColumn(name = "material_id"),
-            inverseJoinColumns = @JoinColumn(name = "domain_id"))
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "materialList", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Domain> domains = new ArrayList<>();
     //many-to-many with weapon
     @ManyToMany

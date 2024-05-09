@@ -13,8 +13,6 @@ public record DomainDTO(
         @NotEmpty(message = "This field cannot be empty")
         String domainType,
         @NotNull(message = "This field cannot be null")
-        List<UUID> rewards_id,
-        @NotNull(message = "This field cannot be null")
         UUID region_id
 ) {
 }
