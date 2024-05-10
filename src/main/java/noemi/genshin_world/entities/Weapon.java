@@ -4,6 +4,8 @@ import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import noemi.genshin_world.entities.enums.Stars;
+import noemi.genshin_world.entities.enums.WeaponType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,10 @@ public class Weapon {
     private String description;
     @Column(columnDefinition = "TEXT")
     private String details;
+    @Enumerated(EnumType.STRING)
+    private WeaponType weaponType;
+    @Enumerated(EnumType.STRING)
+    private Stars stars;
     //many-to-many with material
     @ManyToMany(mappedBy = "weapons")
     private List<Material> materials = new ArrayList<>();

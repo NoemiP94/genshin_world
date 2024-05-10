@@ -8,13 +8,14 @@ import java.util.UUID;
 public record WeaponDTO(
         @NotEmpty(message = "This message cannot be empty")
         String name,
-        @NotEmpty(message = "This message cannot be empty")
         String image,
         @NotEmpty(message = "This message cannot be empty")
         String description,
         @NotEmpty(message = "This message cannot be empty")
         String details,
-        @NotNull(message = "This field cannot be null")
-        List<UUID> materials_id
+        @NotEmpty(message = "This field cannot be empty")
+        String weaponType,
+        @NotEmpty(message = "This field cannot be empty")
+        String stars
 ) {
 }
