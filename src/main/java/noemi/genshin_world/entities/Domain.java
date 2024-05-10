@@ -27,9 +27,9 @@ public class Domain {
     //material many-to-many
     @ManyToMany//(fetch = FetchType.EAGER, mappedBy = "domains", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
-            name = "domain_material", // Nome della tabella di giunzione
-            joinColumns = @JoinColumn(name = "domain_id"), // Colonna di dominio
-            inverseJoinColumns = @JoinColumn(name = "material_id") // Colonna di materiale
+            name = "domain_material",
+            joinColumns = @JoinColumn(name = "domain_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
     )
     private List<Material> materialList = new ArrayList<>();
     //region many-to-one

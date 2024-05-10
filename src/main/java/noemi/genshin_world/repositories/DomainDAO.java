@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.UUID;
 
+
 @Repository
 public interface DomainDAO extends JpaRepository<Domain, UUID> {
     Optional<Domain> findByName(String name);
     Page<Domain> findByDomainType(DomainType domainType, Pageable pageable);
-    Page<Domain> findByRegionId(UUID regionId, Pageable pageable);
 }

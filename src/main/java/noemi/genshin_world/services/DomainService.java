@@ -2,13 +2,9 @@ package noemi.genshin_world.services;
 
 import noemi.genshin_world.entities.*;
 import noemi.genshin_world.entities.enums.DomainType;
-import noemi.genshin_world.entities.enums.PieceType;
-import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.exceptions.IllegalArgumentException;
 import noemi.genshin_world.exceptions.NotFoundException;
 import noemi.genshin_world.payloads.domain.DomainDTO;
-import noemi.genshin_world.payloads.piece.PieceDTO;
-import noemi.genshin_world.payloads.place.PlaceDTO;
 import noemi.genshin_world.repositories.DomainDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,10 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
+
 
 @Service
 public class DomainService {
@@ -33,7 +27,7 @@ public class DomainService {
 
     public Domain saveDomain(DomainDTO body){
         Domain domain = new Domain();
-        Region region = regionService.findById(body.region_id());
+        Region region = regionService.findById(body.regionId());
         domain.setName(body.name());
         domain.setPlace(body.place());
         domain.setRegionId(region);
@@ -73,7 +67,7 @@ public class DomainService {
 
     public Domain findByIdAndUpdate(UUID id, DomainDTO newBody){
         Domain found = domainDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
-        Region newRegion = regionService.findById(newBody.region_id());
+        Region newRegion = regionService.findById(newBody.regionId());
         found.setName(newBody.name());
         found.setPlace(newBody.place());
         found.setRegionId(newRegion);
@@ -107,13 +101,4 @@ public class DomainService {
 
     }
 
-    public Page<Domain> findByRegionId(int page, int size, String orderBy,UUID id){
-        try{
-            Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
-            return domainDAO.findByRegionId(id, pageable);
-        } catch (Exception e){
-            throw new NotFoundException("Domain with regionId " + id + " not found!");
-        }
-
-    }
 }

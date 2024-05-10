@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+
 @RestController
 @RequestMapping("/domain")
 public class DomainController {
@@ -85,12 +86,7 @@ public class DomainController {
                                            @RequestParam(defaultValue = "id") String sort, @PathVariable DomainType domainType){
         return domainService.findByDomainType(page, size, sort, domainType);
     }
-    @GetMapping("/detail/region/{regionId}")
-    public Page<Domain> getDomainByRegionId(@RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "10") int size,
-                                            @RequestParam(defaultValue = "id") String sort, UUID regionId){
-        return domainService.findByRegionId(page,size,sort, regionId);
-    }
+
 
 
 }
