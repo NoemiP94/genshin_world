@@ -24,7 +24,12 @@ public class Enemy {
     private String codeName;
     private String place;
     //many to many con material
-    @ManyToMany(mappedBy = "enemies")
+    @ManyToMany
+    @JoinTable(
+            name="enemy_material",
+            joinColumns = @JoinColumn(name = "enemy_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
     private List<Material> rewards = new ArrayList<>();
 
 }

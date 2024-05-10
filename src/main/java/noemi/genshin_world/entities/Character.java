@@ -51,7 +51,12 @@ public class Character {
     @JoinColumn(name = "region_id")
     private Region region_id;
     //A character has many materials
-    @ManyToMany(mappedBy = "characters")
+    @ManyToMany
+    @JoinTable(
+            name="character_material",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
     private List<Material> ascensionMaterials = new ArrayList<>();
 
 

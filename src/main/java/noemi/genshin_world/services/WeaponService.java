@@ -2,9 +2,7 @@ package noemi.genshin_world.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import noemi.genshin_world.entities.Domain;
 import noemi.genshin_world.entities.Material;
-import noemi.genshin_world.entities.Piece;
 import noemi.genshin_world.entities.Weapon;
 import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.entities.enums.WeaponType;
@@ -111,6 +109,16 @@ public class WeaponService {
     public Page<Weapon> findByStars(int page, int size, String orderBy, Stars stars){
         Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
         return weaponDAO.findByStars(stars, pageable);
+    }
+
+    public Page<Weapon> findByWeaponType(int page, int size, String orderBy, WeaponType weaponType){
+        try{
+            Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
+            return weaponDAO.findByWeaponType(weaponType, pageable);
+        } catch (Exception e){
+            throw new NotFoundException("Weapon with weaponType " + weaponType + " not found!");
+        }
+
     }
 
 }

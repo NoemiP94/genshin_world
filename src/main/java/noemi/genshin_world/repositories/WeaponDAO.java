@@ -2,6 +2,7 @@ package noemi.genshin_world.repositories;
 
 import noemi.genshin_world.entities.Weapon;
 import noemi.genshin_world.entities.enums.Stars;
+import noemi.genshin_world.entities.enums.WeaponType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,5 @@ import java.util.UUID;
 public interface WeaponDAO extends JpaRepository<Weapon, UUID> {
     Optional<Weapon> findByName(String name);
     Page<Weapon> findByStars(Stars stars, Pageable pageable);
+    Page<Weapon> findByWeaponType(WeaponType weaponType, Pageable pageable);
 }

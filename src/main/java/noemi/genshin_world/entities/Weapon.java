@@ -30,7 +30,12 @@ public class Weapon {
     @Enumerated(EnumType.STRING)
     private Stars stars;
     //many-to-many with material
-    @ManyToMany(mappedBy = "weapons")
+    @ManyToMany
+    @JoinTable(
+            name="weapon_material",
+            joinColumns = @JoinColumn(name = "weapon_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
     private List<Material> materials = new ArrayList<>();
     //many-to-many with character
     @ManyToMany(mappedBy = "favWeapons")

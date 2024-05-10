@@ -22,7 +22,12 @@ public class Talent {
     @Column(columnDefinition = "TEXT")
     private String info;
     //many-to-many with material
-    @ManyToMany(mappedBy = "talentList")
+    @ManyToMany
+    @JoinTable(
+            name="talent_material",
+            joinColumns = @JoinColumn(name = "talent_id"),
+            inverseJoinColumns = @JoinColumn(name = "material_id")
+    )
     private List<Material> necessaryMaterials = new ArrayList<>();
     //many-to-one with character
     @ManyToOne

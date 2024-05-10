@@ -15,7 +15,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties({"domains"})
+@JsonIgnoreProperties({"domains", "enemies", "weapons", "talentList", "characters"})
 public class Material {
     @Id
     @GeneratedValue
@@ -28,31 +28,19 @@ public class Material {
     @Enumerated(EnumType.STRING)
     private MaterialType materialType;
     //many to many with enemy
-    @ManyToMany
-    @JoinTable(name = "enemy_material",
-                joinColumns = @JoinColumn(name = "material_id"),
-                inverseJoinColumns = @JoinColumn(name = "enemy_id"))
+    @ManyToMany(mappedBy = "rewards")
     private List<Enemy> enemies = new ArrayList<>();
     //many-to-many with domain
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "materialList", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Domain> domains = new ArrayList<>();
     //many-to-many with weapon
-    @ManyToMany
-    @JoinTable(name = "weapon_material",
-            joinColumns = @JoinColumn(name = "material_id"),
-            inverseJoinColumns = @JoinColumn(name = "weapon_id"))
+    @ManyToMany(mappedBy = "materials")
     private List<Weapon> weapons = new ArrayList<>();
     //many-to-many with talent
-    @ManyToMany
-    @JoinTable(name = "talent_material",
-            joinColumns = @JoinColumn(name = "material_id"),
-            inverseJoinColumns = @JoinColumn(name = "talent_id"))
+    @ManyToMany(mappedBy = "necessaryMaterials")
     private List<Talent> talentList = new ArrayList<>();
     //many-to-many with characters
-    @ManyToMany
-    @JoinTable(name = "character_material",
-            joinColumns = @JoinColumn(name = "material_id"),
-            inverseJoinColumns = @JoinColumn(name = "character_id"))
+    @ManyToMany(mappedBy = "ascensionMaterials")
     private List<Character> characters = new ArrayList<>();
 
 
