@@ -43,7 +43,12 @@ public class DomainController {
         domainService.addMaterialToDomain(domainId, materialId);
         return ResponseEntity.ok("Material added to Domain");
     }
-
+    @DeleteMapping("/{domainId}/material/{materialId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public ResponseEntity<String> removeMaterialFromDomain(@PathVariable UUID domainId, @PathVariable UUID materialId){
+        domainService.deleteMaterialFromDomain(domainId, materialId);
+        return ResponseEntity.ok("Material removed from Domain");
+    }
 
     @GetMapping("/getall")
     public Page<Domain> getDomains(@RequestParam(defaultValue = "0") int page,

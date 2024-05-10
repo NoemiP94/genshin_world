@@ -55,6 +55,13 @@ public class DomainService {
         domainDAO.save(domain);
     }
 
+    public void deleteMaterialFromDomain(UUID domainId, UUID materialId){
+        Domain domain = domainDAO.findById(domainId).orElseThrow(()-> new NotFoundException(domainId));
+        Material material = materialService.findById(materialId);
+        domain.getMaterialList().remove(material);
+        domainDAO.save(domain);
+    }
+
     public Page<Domain> findAllDomains(int page, int size, String orderBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
         return domainDAO.findAll(pageable);
