@@ -11,6 +11,10 @@ import noemi.genshin_world.exceptions.NotFoundException;
 import noemi.genshin_world.payloads.character.CharacterDTO;
 import noemi.genshin_world.repositories.CharacterDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -106,8 +110,40 @@ public class CharacterService {
         return url;
     }
     //findAll
+    public Page<Character> findAllCharacter(int page, int size, String orderBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return characterDAO.findAll(pageable);
+    }
     //findById
+    public Character findById(UUID id){
+        return characterDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+    }
     //update
+    public Character findByIdAndUpdate(UUID id, CharacterDTO newBody){
+        Character found = characterDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+        Region newRegion = regionService.findById(newBody.region_id());
+        found.setName(newBody.name());
+        found.setVoice(newBody.voice());
+        found.setBirthday(newBody.birthday());
+        found.setAffiliate(newBody.affiliate());
+        found.setDescription(newBody.description());
+        found.setRegion_id(newRegion);
+        try{
+            String visionTypeString = newBody.vision();
+            VisionType visionType = VisionType.valueOf(visionTypeString);
+            found.setVision(visionType);
+            String weaponTypeString = newBody.weaponType();
+            WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
+            found.setWeaponType(weaponType);
+        } catch (Exception e){
+            throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
+        }
+        return characterDAO.save(found);
+    }
     //delete
+    public void findByIdAndDelete(UUID id){
+        Character character = characterDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
+        characterDAO.delete(character);
+    }
     //custom filter
 }

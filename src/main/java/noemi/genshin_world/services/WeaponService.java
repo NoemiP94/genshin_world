@@ -72,7 +72,7 @@ public class WeaponService {
     }
 
     public Weapon findByIdAndUpdate(UUID id, WeaponDTO newBody){
-        Weapon found = new Weapon();
+        Weapon found = weaponDAO.findById(id).orElseThrow(()->new NotFoundException(id));
         found.setName(newBody.name());
         found.setDescription(newBody.description());
         found.setDetails(newBody.details());
