@@ -16,8 +16,4 @@ public interface CharacterDAO extends JpaRepository<Character, UUID> {
     Optional<Character> findByName(String name);
     Page<Character> findByVisionType(VisionType visionType, Pageable pageable);
     Page<Character> findByWeaponType(WeaponType weaponType, Pageable pageable);
-    Page<Character> findByRegionId(UUID regionId, Pageable pageable);
-    Page<Character> findByArtifactSetId(UUID artifactSetId, Pageable pageable);
-    Page<Character> findByWeaponId(UUID weaponId, Pageable pageable);
-    Page<Character> findByMaterialId(UUID materialId, Pageable pageable);
 }

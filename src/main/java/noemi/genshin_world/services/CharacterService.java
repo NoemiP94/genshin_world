@@ -47,9 +47,9 @@ public class CharacterService {
         character.setDescription(body.description());
         character.setRegion_id(region);
         try {
-            String visionTypeString = body.vision();
+            String visionTypeString = body.visionType();
             VisionType visionType = VisionType.valueOf(visionTypeString);
-            character.setVision(visionType);
+            character.setVisionType(visionType);
             String weaponTypeString = body.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
             character.setWeaponType(weaponType);
@@ -138,9 +138,9 @@ public class CharacterService {
         found.setDescription(newBody.description());
         found.setRegion_id(newRegion);
         try {
-            String visionTypeString = newBody.vision();
+            String visionTypeString = newBody.visionType();
             VisionType visionType = VisionType.valueOf(visionTypeString);
-            found.setVision(visionType);
+            found.setVisionType(visionType);
             String weaponTypeString = newBody.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
             found.setWeaponType(weaponType);
@@ -181,15 +181,5 @@ public class CharacterService {
             throw new NotFoundException("Character with weaponType " + weaponType + " not found!");
         }
 
-    }
-
-    //findbyregionId
-    public Page<Character> findByRegionId(int page, int size, String orderBy, UUID regionId) {
-        try {
-            Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
-            return characterDAO.findByRegionId(regionId, pageable);
-        } catch (Exception e) {
-            throw new NotFoundException("Character with regionId " + regionId + " not found!");
-        }
     }
 }

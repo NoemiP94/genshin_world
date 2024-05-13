@@ -1,6 +1,7 @@
 package noemi.genshin_world.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"characterList"})
 public class ArtifactSet {
     @Id
     @GeneratedValue
@@ -25,9 +27,6 @@ public class ArtifactSet {
     @OneToMany(mappedBy = "artifactSet_id")
     private List<Piece> pieceList;
     //many-to-many with character
-    @ManyToMany
-    @JoinTable(name = "artifactSet_character",
-                joinColumns = @JoinColumn(name = "artifactSet_id"),
-                inverseJoinColumns = @JoinColumn(name = "character_id"))
+    @ManyToMany(mappedBy = "artifactSetList")
     private List<Character> characterList = new ArrayList<>();
 }

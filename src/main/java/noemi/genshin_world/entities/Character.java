@@ -25,7 +25,7 @@ public class Character {
     private String birthday;
     private String affiliate;
     @Enumerated(EnumType.STRING)
-    private VisionType vision;
+    private VisionType visionType;
     //A character has one constellation
     @OneToOne(mappedBy = "character")
     private Constellation constellation;
@@ -36,7 +36,10 @@ public class Character {
     @OneToMany(mappedBy = "character_id")
     private List<Talent> talentList;
     //many-to-many with artifactSet
-    @ManyToMany(mappedBy = "characterList")
+    @ManyToMany
+    @JoinTable(name = "character_artifactSet",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "artifactset_id"))
     private List<ArtifactSet> artifactSetList = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private WeaponType weaponType;
