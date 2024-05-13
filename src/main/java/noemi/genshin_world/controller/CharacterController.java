@@ -3,6 +3,8 @@ package noemi.genshin_world.controller;
 import noemi.genshin_world.entities.Character;
 import noemi.genshin_world.entities.Material;
 import noemi.genshin_world.entities.Weapon;
+import noemi.genshin_world.entities.enums.VisionType;
+import noemi.genshin_world.entities.enums.WeaponType;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.character.CharacterDTO;
 import noemi.genshin_world.payloads.character.CharacterResponseDTO;
@@ -110,4 +112,17 @@ public class CharacterController {
         return characterService.findByName(name);
     }
 
+    @GetMapping("/detail/visionType/{visionType}")
+    public Page<Character> getCharacterByVisionType(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "10") int size,
+                                                    @RequestParam(defaultValue = "id") String sort, @PathVariable VisionType visionType){
+        return characterService.findByVisionType(page, size,sort, visionType);
+    }
+
+    @GetMapping("/detail/weaponType/{weaponType}")
+    public Page<Character> getCharacterByWeaponType(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "10") int size,
+                                                    @RequestParam(defaultValue = "id") String sort, @PathVariable WeaponType weaponType){
+        return characterService.findByWeaponType(page, size, sort, weaponType);
+    }
 }
