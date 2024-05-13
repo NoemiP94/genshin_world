@@ -145,5 +145,14 @@ public class CharacterService {
         Character character = characterDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
         characterDAO.delete(character);
     }
-    //custom filter
+    //findbyname
+    public Character findByName(String name){
+        return characterDAO.findByName(name).orElseThrow(()-> new NotFoundException(name));
+    }
+    //findbyvisiontype
+    //findbyweapontype
+    //findbyregionId
+    //findbyartifactsetid
+    //findbyweaponid
+    //findbymaterialid
 }

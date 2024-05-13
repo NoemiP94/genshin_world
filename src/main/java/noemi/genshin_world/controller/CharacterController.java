@@ -105,5 +105,9 @@ public class CharacterController {
         characterService.findByIdAndDelete(id);
     }
 
+    @GetMapping("/detail/name/{name}")
+    public Character getCharacterByName(@PathVariable String name){
+        return characterService.findByName(name);
+    }
 
 }
