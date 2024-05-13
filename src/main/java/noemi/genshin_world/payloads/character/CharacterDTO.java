@@ -17,6 +17,8 @@ public record CharacterDTO(
         @NotEmpty(message = "This field cannot be empty")
         String description,
         @NotEmpty(message = "This field cannot be empty")
+        String weaponType,
+        @NotEmpty(message = "This field cannot be empty")
         String image,
         @NotNull(message = "This field cannot be null")
         List<UUID> artifacts_id,
