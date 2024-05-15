@@ -57,6 +57,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 || servletPath.equals("/weapon/getall") || servletPath.startsWith("/weapon/detail")
                 || servletPath.equals("/character/getall") || servletPath.startsWith("/character/detail")
                 || servletPath.equals("/constellation/getall") || servletPath.startsWith("/constellation/detail")
-                || servletPath.equals("/degree/getall") || servletPath.startsWith("/degree/detail");
+                || servletPath.equals("/degree/getall") || servletPath.startsWith("/degree/detail")
+                || servletPath.equals("/talent/getall") || servletPath.startsWith("/talent/detail");
     }
 }
