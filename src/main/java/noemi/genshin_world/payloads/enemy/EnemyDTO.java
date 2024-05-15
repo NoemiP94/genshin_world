@@ -10,11 +10,9 @@ public record EnemyDTO(
         String name,
         @NotEmpty(message = "This field cannot be empty")
         String description,
-        @NotEmpty(message = "This field cannot be empty")
         String image,
         String codeName,
         String place,
-        @NotNull(message = "This field cannot be null")
         List<UUID> rewards
 ) {
 }
