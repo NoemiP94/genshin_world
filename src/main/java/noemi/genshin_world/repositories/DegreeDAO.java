@@ -4,8 +4,10 @@ import noemi.genshin_world.entities.Degree;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface DegreeDAO extends JpaRepository<Degree, UUID> {
+    Optional<Degree> findByName(String name);
 }

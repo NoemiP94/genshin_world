@@ -1,10 +1,7 @@
 package noemi.genshin_world.controller;
 
-import noemi.genshin_world.entities.Character;
 import noemi.genshin_world.entities.Constellation;
 import noemi.genshin_world.exceptions.BadRequestException;
-import noemi.genshin_world.payloads.character.CharacterDTO;
-import noemi.genshin_world.payloads.character.CharacterResponseDTO;
 import noemi.genshin_world.payloads.constellation.ConstellationDTO;
 import noemi.genshin_world.payloads.constellation.ConstellationResponseDTO;
 import noemi.genshin_world.services.ConstellationService;
