@@ -1,6 +1,7 @@
 package noemi.genshin_world.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@JsonIgnoreProperties({"character"})
 public class Constellation {
     @Id
     @GeneratedValue
