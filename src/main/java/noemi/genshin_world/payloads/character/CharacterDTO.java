@@ -24,7 +24,7 @@ public record CharacterDTO(
         List<UUID> artifacts_id,
 
         List<UUID> weapons_id,
-        @NotNull(message = "This field cannot be null")
+
         UUID region_id,
 
         List<UUID> materials_id
