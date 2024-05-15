@@ -1,10 +1,7 @@
 package noemi.genshin_world.controller;
 
-import noemi.genshin_world.entities.Degree;
 import noemi.genshin_world.entities.Talent;
 import noemi.genshin_world.exceptions.BadRequestException;
-import noemi.genshin_world.payloads.degree.DegreeDTO;
-import noemi.genshin_world.payloads.degree.DegreeResponseDTO;
 import noemi.genshin_world.payloads.talent.TalentDTO;
 import noemi.genshin_world.payloads.talent.TalentResponseDTO;
 import noemi.genshin_world.services.TalentService;
