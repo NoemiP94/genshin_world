@@ -1,5 +1,6 @@
 package noemi.genshin_world.services;
 
+
 import noemi.genshin_world.entities.Constellation;
 import noemi.genshin_world.entities.Degree;
 import noemi.genshin_world.exceptions.NotFoundException;
@@ -41,8 +42,8 @@ public class DegreeService {
     }
 
     public Degree findByIdAndUpdate(UUID id, DegreeDTO newBody){
-        Degree found = degreeDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
-        Constellation newConstellation = constellationService.findById(id);
+        Degree found = degreeDAO.findById(id).orElseThrow(()->new NotFoundException(id));
+        Constellation newConstellation = constellationService.findById(newBody.constellation_id());
         found.setName(newBody.name());
         found.setDescription(newBody.description());
         found.setLevel(newBody.level());

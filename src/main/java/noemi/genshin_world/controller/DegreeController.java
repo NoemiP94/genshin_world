@@ -4,6 +4,7 @@ import noemi.genshin_world.entities.Degree;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.degree.DegreeDTO;
 import noemi.genshin_world.payloads.degree.DegreeResponseDTO;
+
 import noemi.genshin_world.services.DegreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
