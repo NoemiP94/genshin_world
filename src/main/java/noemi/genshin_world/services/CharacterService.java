@@ -190,6 +190,12 @@ public class CharacterService {
         return characterDAO.findByRegionId(regionId, pageable);
     }
 
+    //findbyartifactsetid
+    public Page<Character> findByArtifactSet(int page, int size, String orderBy, @RequestParam UUID artifactsetId){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return characterDAO.findByArtifactset_Id(artifactsetId, pageable);
+    }
+
 
 
 }

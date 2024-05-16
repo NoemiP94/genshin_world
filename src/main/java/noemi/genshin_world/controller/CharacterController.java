@@ -133,4 +133,12 @@ public class CharacterController {
                                         @PathVariable UUID regionId){
         return characterService.findByRegion(page,size,sort, regionId);
     }
+
+    @GetMapping("/detail/artifact/{artifactSetId}")
+    public Page<Character> findByArtifactSet(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "id") String sort,
+                                        @PathVariable UUID artifactSetId){
+        return characterService.findByArtifactSet(page,size,sort, artifactSetId);
+    }
 }

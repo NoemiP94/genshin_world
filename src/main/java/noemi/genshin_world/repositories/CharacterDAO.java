@@ -23,12 +23,12 @@ public interface CharacterDAO extends JpaRepository<Character, UUID> {
     @Query("SELECT c FROM Character c JOIN Region r ON c.region_id = r.id WHERE r.id = :regionId")
     Page<Character> findByRegionId(@Param("regionId") UUID regionId, Pageable pageable);
     //find all Characters with the same artifactSetId
-    //@Query("SELECT c FROM Character c WHERE c.artifactset_id = :artifactset_id")
-   // Page<Character> findByArtifactSetId(@Param("artifactset_id") UUID artifactsetId, Pageable pageable);
+    @Query("SELECT c FROM Character c JOIN c.artifactSetList a WHERE a.id = :artifactSetId")
+    Page<Character> findByArtifactset_Id(@Param("artifactSetId") UUID artifactSetId, Pageable pageable);
     //find all Characters with the same weaponId
-    //@Query("SELECT c FROM Character c WHERE c.weapon_id = :weapon_id")
-   // Page<Character> findByWeaponId(@Param("weapon_id") UUID weaponId, Pageable pageable);
+    //@Query("SELECT c FROM Character c JOIN Weapon w ON c.weapon_id = w.id WHERE w.id = :weaponId")
+    //Page<Character> findByWeaponId(@Param("weaponId") UUID weaponId, Pageable pageable);
     //find all Characters with the same materialId
-    //@Query("SELECT c FROM Character c WHERE c.material_id = :material_id")
-   // Page<Character> findByMaterialId(@Param("material_id") UUID materialId, Pageable pageable);
+    //@Query("SELECT c FROM Character c JOIN Material m ON c.material_id = m.id WHERE m.id = :materialId")
+    //Page<Character> findByMaterialId(@Param("materialId") UUID materialId, Pageable pageable);
 }
