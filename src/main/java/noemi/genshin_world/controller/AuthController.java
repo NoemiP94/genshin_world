@@ -43,7 +43,7 @@ public class AuthController {
 
     //aggiungere update
     @PutMapping("/update")
-    @PreAuthorize("hasAuthority('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public User updateUser(@AuthenticationPrincipal User currentUser, @RequestBody UserDTO body){
         return authService.findByIdAndUpdate(currentUser.getId(), body);
     }

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping("/getall")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Page<User> getAllUsers(@RequestParam(defaultValue = "0") int page,
                                   @RequestParam(defaultValue = "10") int size,
