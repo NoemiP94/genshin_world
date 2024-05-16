@@ -38,7 +38,7 @@ public class BlogpostController {
     @GetMapping("/getall")
     public Page<Blogpost> getBlogposts(@RequestParam(defaultValue = "0") int page,
                                        @RequestParam(defaultValue = "12") int size,
-                                       @RequestParam(defaultValue = "date") String orderBy){
+                                       @RequestParam(defaultValue = "id") String orderBy){
         return blogpostService.findAll(page, size, orderBy);
     }
 
