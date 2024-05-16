@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -182,4 +183,13 @@ public class CharacterService {
         }
 
     }
+
+    //findbyregionid
+    public Page<Character> findByRegion(int page, int size, String orderBy, @RequestParam UUID regionId){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return characterDAO.findByRegionId(regionId, pageable);
+    }
+
+
+
 }
