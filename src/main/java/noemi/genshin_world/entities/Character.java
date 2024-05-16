@@ -4,6 +4,7 @@ package noemi.genshin_world.entities;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
 
@@ -32,6 +33,8 @@ public class Character {
     @Column(columnDefinition = "TEXT")
     private String description;
     private String image;
+    @Enumerated(EnumType.STRING)
+    private Stars stars;
     //A character has many talents
     @OneToMany(mappedBy = "character_id")
     private List<Talent> talentList;

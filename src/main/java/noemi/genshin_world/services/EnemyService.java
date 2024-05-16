@@ -2,13 +2,10 @@ package noemi.genshin_world.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import noemi.genshin_world.entities.Character;
 import noemi.genshin_world.entities.Enemy;
 import noemi.genshin_world.entities.Material;
-import noemi.genshin_world.entities.Talent;
 import noemi.genshin_world.exceptions.NotFoundException;
 import noemi.genshin_world.payloads.enemy.EnemyDTO;
-import noemi.genshin_world.payloads.enemy.EnemyResponseDTO;
 import noemi.genshin_world.repositories.EnemyDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

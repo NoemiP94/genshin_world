@@ -12,6 +12,7 @@ public record CharacterDTO(
         String voice,
         @NotEmpty(message = "This field cannot be empty")
         String birthday,
+        String stars,
         String affiliate,
         String visionType,
         @NotEmpty(message = "This field cannot be empty")

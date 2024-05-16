@@ -5,7 +5,6 @@ import noemi.genshin_world.entities.enums.DomainType;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.domain.DomainDTO;
 import noemi.genshin_world.payloads.domain.DomainResponseDTO;
-
 import noemi.genshin_world.services.DomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

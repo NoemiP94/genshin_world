@@ -9,7 +9,6 @@ import noemi.genshin_world.entities.enums.PieceType;
 import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.exceptions.IllegalArgumentException;
 import noemi.genshin_world.exceptions.NotFoundException;
-
 import noemi.genshin_world.payloads.piece.PieceDTO;
 import noemi.genshin_world.repositories.PieceDAO;
 import org.springframework.beans.factory.annotation.Autowired;

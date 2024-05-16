@@ -4,6 +4,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import noemi.genshin_world.entities.*;
 import noemi.genshin_world.entities.Character;
+import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
 import noemi.genshin_world.exceptions.IllegalArgumentException;
@@ -54,6 +55,9 @@ public class CharacterService {
             String weaponTypeString = body.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
             character.setWeaponType(weaponType);
+            String starsString = body.stars();
+            Stars stars = Stars.valueOf(starsString);
+            character.setStars(stars);
         } catch (Exception e) {
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
@@ -145,6 +149,9 @@ public class CharacterService {
             String weaponTypeString = newBody.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
             found.setWeaponType(weaponType);
+            String starsString = newBody.stars();
+            Stars stars = Stars.valueOf(starsString);
+            found.setStars(stars);
         } catch (Exception e) {
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
@@ -180,6 +187,17 @@ public class CharacterService {
             return characterDAO.findByWeaponType(weaponType, pageable);
         } catch (Exception e) {
             throw new NotFoundException("Character with weaponType " + weaponType + " not found!");
+        }
+
+    }
+
+    //findbystars
+    public Page<Character> findByStars(int page, int size, String orderBy, Stars stars) {
+        try {
+            Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+            return characterDAO.findByStars(stars, pageable);
+        } catch (Exception e) {
+            throw new NotFoundException("Character with weaponType " + stars + " not found!");
         }
 
     }

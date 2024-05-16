@@ -1,6 +1,7 @@
 package noemi.genshin_world.repositories;
 
 import noemi.genshin_world.entities.Character;
+import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ public interface CharacterDAO extends JpaRepository<Character, UUID> {
     Optional<Character> findByName(String name);
     Page<Character> findByVisionType(VisionType visionType, Pageable pageable);
     Page<Character> findByWeaponType(WeaponType weaponType, Pageable pageable);
+    Page<Character> findByStars(Stars stars, Pageable pageable);
 
     //find all Characters with the same regionId
     @Query("SELECT c FROM Character c JOIN Region r ON c.region_id = r.id WHERE r.id = :regionId")

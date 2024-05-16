@@ -1,8 +1,6 @@
 package noemi.genshin_world.controller;
 
-import noemi.genshin_world.entities.Material;
 import noemi.genshin_world.entities.Piece;
-import noemi.genshin_world.entities.enums.MaterialType;
 import noemi.genshin_world.entities.enums.PieceType;
 import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.exceptions.BadRequestException;

@@ -1,14 +1,12 @@
 package noemi.genshin_world.controller;
 
 import noemi.genshin_world.entities.Character;
-import noemi.genshin_world.entities.Material;
-import noemi.genshin_world.entities.Weapon;
+import noemi.genshin_world.entities.enums.Stars;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.entities.enums.WeaponType;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.character.CharacterDTO;
 import noemi.genshin_world.payloads.character.CharacterResponseDTO;
-import noemi.genshin_world.payloads.weapon.WeaponDTO;
 import noemi.genshin_world.services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -117,6 +115,12 @@ public class CharacterController {
                                                     @RequestParam(defaultValue = "10") int size,
                                                     @RequestParam(defaultValue = "id") String sort, @PathVariable VisionType visionType){
         return characterService.findByVisionType(page, size,sort, visionType);
+    }
+    @GetMapping("/detail/stars/{stars}")
+    public Page<Character> getCharacterByStars(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "10") int size,
+                                                    @RequestParam(defaultValue = "id") String sort, @PathVariable Stars stars){
+        return characterService.findByStars(page, size,sort, stars);
     }
 
     @GetMapping("/detail/weaponType/{weaponType}")
