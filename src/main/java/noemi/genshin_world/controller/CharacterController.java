@@ -141,4 +141,20 @@ public class CharacterController {
                                         @PathVariable UUID artifactSetId){
         return characterService.findByArtifactSet(page,size,sort, artifactSetId);
     }
+
+    @GetMapping("/detail/weapon/{weaponId}")
+    public Page<Character> findByWeapon(@RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "10") int size,
+                                             @RequestParam(defaultValue = "id") String sort,
+                                             @PathVariable UUID weaponId){
+        return characterService.findByWeapon(page,size,sort, weaponId);
+    }
+
+    @GetMapping("/detail/material/{materialId}")
+    public Page<Character> findByMaterial(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "id") String sort,
+                                        @PathVariable UUID materialId){
+        return characterService.findByMaterial(page,size,sort, materialId);
+    }
 }

@@ -26,9 +26,9 @@ public interface CharacterDAO extends JpaRepository<Character, UUID> {
     @Query("SELECT c FROM Character c JOIN c.artifactSetList a WHERE a.id = :artifactSetId")
     Page<Character> findByArtifactset_Id(@Param("artifactSetId") UUID artifactSetId, Pageable pageable);
     //find all Characters with the same weaponId
-    //@Query("SELECT c FROM Character c JOIN Weapon w ON c.weapon_id = w.id WHERE w.id = :weaponId")
-    //Page<Character> findByWeaponId(@Param("weaponId") UUID weaponId, Pageable pageable);
+    @Query("SELECT c FROM Character c JOIN c.favWeapons w WHERE w.id = :weaponId")
+    Page<Character> findByWeaponId(@Param("weaponId") UUID weaponId, Pageable pageable);
     //find all Characters with the same materialId
-    //@Query("SELECT c FROM Character c JOIN Material m ON c.material_id = m.id WHERE m.id = :materialId")
-    //Page<Character> findByMaterialId(@Param("materialId") UUID materialId, Pageable pageable);
+    @Query("SELECT c FROM Character c JOIN c.ascensionMaterials m WHERE m.id = :materialId")
+    Page<Character> findByMaterialId(@Param("materialId") UUID materialId, Pageable pageable);
 }

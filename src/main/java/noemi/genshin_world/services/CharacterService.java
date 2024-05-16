@@ -196,6 +196,18 @@ public class CharacterService {
         return characterDAO.findByArtifactset_Id(artifactsetId, pageable);
     }
 
+    //findbyweaponid
+    public Page<Character> findByWeapon(int page, int size, String orderBy, @RequestParam UUID weaponId){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return characterDAO.findByWeaponId(weaponId, pageable);
+    }
+
+    //findbymaterialid
+    public Page<Character> findByMaterial(int page, int size, String orderBy, @RequestParam UUID materialId){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return characterDAO.findByMaterialId(materialId, pageable);
+    }
+
 
 
 }
