@@ -26,8 +26,6 @@ public class Piece {
     private String description;
     @Enumerated(EnumType.STRING)
     private PieceType pieceType;
-    @Enumerated(EnumType.STRING)
-    private Stars stars;
     @ManyToOne
     @JoinColumn(name = "artifactSet_id")
     private ArtifactSet artifactSet_id;

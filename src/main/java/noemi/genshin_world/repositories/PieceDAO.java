@@ -15,6 +15,6 @@ import java.util.UUID;
 public interface PieceDAO extends JpaRepository<Piece, UUID> {
     Optional<Piece> findByName(String name);
 
-    Page<Piece> findByStars(Stars stars, Pageable pageable);
+
     Page<Piece> findByPieceType(PieceType pieceType, Pageable pageable);
 }

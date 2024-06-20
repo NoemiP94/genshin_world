@@ -44,9 +44,7 @@ public class PieceService {
             String pieceTypeString = body.pieceType();
             PieceType pieceType = PieceType.valueOf(pieceTypeString);
             piece.setPieceType(pieceType);
-            String starsString = body.stars();
-            Stars stars = Stars.valueOf(starsString);
-            piece.setStars(stars);
+
         } catch(Exception e){
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
@@ -85,9 +83,7 @@ public class PieceService {
             String pieceTypeString = newBody.pieceType();
             PieceType pieceType = PieceType.valueOf(pieceTypeString);
             found.setPieceType(pieceType);
-            String starsString = newBody.stars();
-            Stars stars = Stars.valueOf(starsString);
-            found.setStars(stars);
+
         } catch(Exception e){
             throw new IllegalArgumentException("Il dato fornito non è quello richiesto!");
         }
@@ -105,11 +101,6 @@ public class PieceService {
         return pieceDAO.findByName(name).orElseThrow(()-> new NotFoundException("Piece with name " + name + " not found!"));
     }
 
-    //findbystars
-    public Page<Piece> findByStars(int page, int size, String orderBy, Stars stars){
-        Pageable pageable = PageRequest.of(page,size, Sort.by(orderBy));
-        return pieceDAO.findByStars(stars, pageable);
-    }
     //findbypiecetype
     public Page<Piece> findByPieceType(int page, int size, String orderBy, PieceType pieceType){
         try{

@@ -12,8 +12,7 @@ public record PieceDTO(
         String description,
         @NotEmpty(message = "This field cannot be empty")
         String pieceType,
-        @NotEmpty(message = "This field cannot be empty")
-        String stars,
+
         @NotNull(message = "This field cannot be null")
         UUID artifactSet_id
 ) {

@@ -80,13 +80,7 @@ public class PieceController {
         return pieceService.findByName(name);
     }
 
-    //findbystars
-    @GetMapping("/detail/stars/{stars}")
-    public Page<Piece> getPieceByStars(@RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "10") int size,
-                                            @RequestParam(defaultValue = "id") String sort, @PathVariable Stars stars){
-        return pieceService.findByStars(page, size, sort, stars);
-    }
+
 
     //findbypiecetype
     @GetMapping("/detail/type/{pieceType}")
