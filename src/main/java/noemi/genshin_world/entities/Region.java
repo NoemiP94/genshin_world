@@ -35,4 +35,8 @@ public class Region {
     //A region has many characters
     @OneToMany(mappedBy = "region_id")
     private List<Character> characterList;
+    private String ideal;
+    private String capital;
+    private String festival;
+    private String symbol;
 }

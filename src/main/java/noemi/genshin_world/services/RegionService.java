@@ -1,5 +1,8 @@
 package noemi.genshin_world.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import noemi.genshin_world.entities.Enemy;
 import noemi.genshin_world.entities.Region;
 import noemi.genshin_world.entities.enums.VisionType;
 import noemi.genshin_world.exceptions.IllegalArgumentException;
@@ -12,19 +15,26 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
 public class RegionService {
     @Autowired
     private RegionDAO regionDAO;
+    @Autowired
+    private Cloudinary cloudinary;
 
     public Region saveRegion(RegionDTO body){
         Region region = new Region();
         region.setName(body.name());
         region.setDescription(body.description());
         region.setArchon(body.archon());
+        region.setIdeal(body.ideal());
+        region.setCapital(body.capital());
+        region.setFestival(body.festival());
         try {
             String visionTypeString = body.vision();
             VisionType visionType = VisionType.valueOf(visionTypeString);
@@ -49,6 +59,9 @@ public class RegionService {
         found.setName(newBody.name());
         found.setDescription(newBody.description());
         found.setArchon(newBody.archon());
+        found.setIdeal(newBody.ideal());
+        found.setCapital(newBody.capital());
+        found.setFestival(newBody.festival());
         try {
             String visionTypeString = newBody.vision();
             VisionType visionType = VisionType.valueOf(visionTypeString);
@@ -78,4 +91,14 @@ public class RegionService {
             throw new NotFoundException("Regions with vision " + visionType + " not found!");
         }
     }
+
+    public String uploadImage(UUID id, MultipartFile file) throws IOException {
+        Region region = regionDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        region.setSymbol(url);
+        regionDAO.save(region);
+        return url;
+        }
+
+
 }
