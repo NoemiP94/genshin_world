@@ -12,6 +12,7 @@ public record DegreeDTO(
         @NotEmpty(message = "This field cannot be empty")
         String description,
         @NotNull(message = "This field cannot be null")
-        UUID constellation_id
+        UUID constellation_id,
+        String image
 ) {
 }

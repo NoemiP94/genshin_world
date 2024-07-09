@@ -25,4 +25,5 @@ public class Degree {
     @ManyToOne
     @JoinColumn(name = "constellation_id")
     private Constellation constellation_id;
+    private String image;
 }
