@@ -43,11 +43,17 @@ public class CharacterService {
         Character character = new Character();
         Region region = regionService.findById(body.region_id());
         character.setName(body.name());
-        character.setVoice(body.voice());
+        character.setEngVoice(body.engVoice());
         character.setBirthday(body.birthday());
         character.setAffiliate(body.affiliate());
         character.setDescription(body.description());
         character.setRegion_id(region);
+        character.setTitle(body.title());
+        character.setReleaseVersion(body.releaseVersion());
+        character.setJapVoice(body.japVoice());
+        character.setChinVoice(body.chinVoice());
+        character.setCorVoice(body.corVoice());
+        character.setSpecialDish(body.specialDish());
         try {
             String visionTypeString = body.visionType();
             VisionType visionType = VisionType.valueOf(visionTypeString);
@@ -137,11 +143,17 @@ public class CharacterService {
         Character found = characterDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
         Region newRegion = regionService.findById(newBody.region_id());
         found.setName(newBody.name());
-        found.setVoice(newBody.voice());
+        found.setEngVoice(newBody.engVoice());
         found.setBirthday(newBody.birthday());
         found.setAffiliate(newBody.affiliate());
         found.setDescription(newBody.description());
         found.setRegion_id(newRegion);
+        found.setTitle(newBody.title());
+        found.setReleaseVersion(newBody.releaseVersion());
+        found.setJapVoice(newBody.japVoice());
+        found.setChinVoice(newBody.chinVoice());
+        found.setCorVoice(newBody.corVoice());
+        found.setSpecialDish(newBody.specialDish());
         try {
             String visionTypeString = newBody.visionType();
             VisionType visionType = VisionType.valueOf(visionTypeString);

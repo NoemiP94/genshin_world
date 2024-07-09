@@ -22,7 +22,7 @@ public class Character {
     @Setter(AccessLevel.NONE)
     private UUID id;
     private String name;
-    private String voice;
+    private String engVoice;
     private String birthday;
     private String affiliate;
     @Enumerated(EnumType.STRING)
@@ -64,6 +64,12 @@ public class Character {
             inverseJoinColumns = @JoinColumn(name = "material_id")
     )
     private List<Material> ascensionMaterials = new ArrayList<>();
+    private String title;
+    private double releaseVersion;
+    private String japVoice;
+    private String chinVoice;
+    private String corVoice;
+    private String specialDish;
 
 
 }

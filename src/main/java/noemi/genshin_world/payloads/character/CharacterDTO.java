@@ -8,9 +8,8 @@ import java.util.UUID;
 public record CharacterDTO(
         @NotEmpty(message = "This field cannot be empty")
         String name,
-        @NotEmpty(message = "This field cannot be empty")
-        String voice,
-        @NotEmpty(message = "This field cannot be empty")
+        String engVoice,
+
         String birthday,
         String stars,
         String affiliate,
@@ -28,6 +27,12 @@ public record CharacterDTO(
 
         UUID region_id,
 
-        List<UUID> materials_id
+        List<UUID> materials_id,
+        String title,
+        double releaseVersion,
+        String japVoice,
+        String chinVoice,
+        String corVoice,
+        String specialDish
 ) {
 }
