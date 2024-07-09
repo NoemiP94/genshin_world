@@ -29,4 +29,7 @@ public class ArtifactSet {
     //many-to-many with character
     @ManyToMany(mappedBy = "artifactSetList")
     private List<Character> characterList = new ArrayList<>();
+    private String image;
+    private String origin;
+
 }

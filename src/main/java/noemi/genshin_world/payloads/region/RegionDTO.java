@@ -13,5 +13,6 @@ public record RegionDTO(
         String capital,
         String festival,
         String image
+
 ) {
 }
