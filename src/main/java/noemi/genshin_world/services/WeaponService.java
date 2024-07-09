@@ -35,6 +35,7 @@ public class WeaponService {
         weapon.setName(body.name());
         weapon.setDescription(body.description());
         weapon.setDetails(body.details());
+        weapon.setOrigin(body.origin());
         try{
             String weaponTypeString = body.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);
@@ -76,6 +77,7 @@ public class WeaponService {
         found.setName(newBody.name());
         found.setDescription(newBody.description());
         found.setDetails(newBody.details());
+        found.setOrigin(newBody.origin());
         try{
             String weaponTypeString = newBody.weaponType();
             WeaponType weaponType = WeaponType.valueOf(weaponTypeString);

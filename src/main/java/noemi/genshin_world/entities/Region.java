@@ -38,5 +38,5 @@ public class Region {
     private String ideal;
     private String capital;
     private String festival;
-    private String symbol;
+    private String image;
 }

@@ -16,6 +16,7 @@ public record WeaponDTO(
         @NotEmpty(message = "This field cannot be empty")
         String weaponType,
         @NotEmpty(message = "This field cannot be empty")
-        String stars
+        String stars,
+        String origin
 ) {
 }

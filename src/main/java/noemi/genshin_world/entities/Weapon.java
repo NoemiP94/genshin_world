@@ -43,4 +43,5 @@ public class Weapon {
     //many-to-many with character
     @ManyToMany(mappedBy = "favWeapons")
     private List<Character> characterList = new ArrayList<>();
+    private String origin;
 }

@@ -95,7 +95,7 @@ public class RegionService {
     public String uploadImage(UUID id, MultipartFile file) throws IOException {
         Region region = regionDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
         String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
-        region.setSymbol(url);
+        region.setImage(url);
         regionDAO.save(region);
         return url;
         }
