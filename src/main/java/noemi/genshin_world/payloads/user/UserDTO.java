@@ -17,6 +17,7 @@ public record UserDTO(
         @NotNull(message = "This field cannot be null")
         @NotEmpty(message= "This field cannot be empty")
         @Size(min = 6, max = 16, message = "Password must be between 6 and 16 chars")
-        String password
+        String password,
+        String image
 ) {
 }

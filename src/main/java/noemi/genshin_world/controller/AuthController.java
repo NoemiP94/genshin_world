@@ -41,12 +41,4 @@ public class AuthController {
         return new UserLoginResponseDTO(authResponse.get("token"), authResponse.get("role"));
     }
 
-    //aggiungere update
-    @PutMapping("/update")
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public User updateUser(@AuthenticationPrincipal User currentUser, @RequestBody UserDTO body){
-        return authService.findByIdAndUpdate(currentUser.getId(), body);
-    }
-
-
 }

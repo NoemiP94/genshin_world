@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -37,4 +39,9 @@ public class UserController {
         userService.deleteById(id);
     }
 
+    @PostMapping("/{id}/image")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException {
+        return userService.uploadImage(id, body);
+    }
 }

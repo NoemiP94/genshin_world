@@ -55,12 +55,4 @@ public class AuthService {
         }
     }
 
-    public User findByIdAndUpdate(UUID id, UserDTO newBody){
-        User found = userService.findById(id);
-        found.setName(newBody.name());
-        found.setSurname(newBody.surname());
-        found.setEmail(newBody.email());
-        found.setPassword(bcrypt.encode(newBody.password()));
-        return userDAO.save(found);
-    }
 }
