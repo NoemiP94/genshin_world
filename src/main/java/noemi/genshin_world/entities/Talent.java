@@ -36,4 +36,5 @@ public class Talent {
     @ManyToOne
     @JoinColumn(name = "character_id")
     private Character character_id;
+    private String image;
 }

@@ -13,7 +13,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -67,5 +69,11 @@ public class TalentController {
     public ResponseEntity<String> removeMaterialFromTalent(@PathVariable UUID talentId, @PathVariable UUID materialId ){
         talentService.removeMaterialFromTalent(talentId, materialId);
         return ResponseEntity.ok("Material removed from Talent");
+    }
+
+    @PostMapping("/{id}/image")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException {
+        return talentService.uploadImage(id, body);
     }
 }

@@ -1,7 +1,10 @@
 package noemi.genshin_world.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import noemi.genshin_world.entities.Character;
 import noemi.genshin_world.entities.Material;
+import noemi.genshin_world.entities.Region;
 import noemi.genshin_world.entities.Talent;
 import noemi.genshin_world.exceptions.NotFoundException;
 import noemi.genshin_world.payloads.talent.TalentDTO;
@@ -12,7 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -23,6 +28,8 @@ public class TalentService {
     private MaterialService materialService;
     @Autowired
     private CharacterService characterService;
+    @Autowired
+    private Cloudinary cloudinary;
 
     public Talent saveTalent(TalentDTO body){
         Talent talent = new Talent();
@@ -68,5 +75,13 @@ public class TalentService {
     public void findByIdAndDelete(UUID id){
         Talent found = talentDAO.findById(id).orElseThrow(()-> new NotFoundException(id));
         talentDAO.delete(found);
+    }
+
+    public String uploadImage(UUID id, MultipartFile file) throws IOException {
+        Talent talent = talentDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        talent.setImage(url);
+        talentDAO.save(talent);
+        return url;
     }
 }

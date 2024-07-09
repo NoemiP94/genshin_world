@@ -13,6 +13,7 @@ public record TalentDTO(
 
         List<UUID> materials_id,
         @NotNull(message = "This field cannot be null")
-        UUID character_id
+        UUID character_id,
+        String image
 ) {
 }
