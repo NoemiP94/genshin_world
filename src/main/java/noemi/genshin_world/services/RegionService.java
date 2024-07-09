@@ -98,7 +98,7 @@ public class RegionService {
         region.setImage(url);
         regionDAO.save(region);
         return url;
-        }
+    }
 
 
 }

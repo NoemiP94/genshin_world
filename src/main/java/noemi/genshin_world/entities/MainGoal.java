@@ -18,4 +18,5 @@ public class MainGoal {
     //A mainGoal has many goals
     @OneToMany(mappedBy = "mainGoal_id")
     private List<Goal> goalList;
+    private String image;
 }
