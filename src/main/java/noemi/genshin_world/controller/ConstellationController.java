@@ -12,7 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -61,4 +63,9 @@ public class ConstellationController {
         return constellationService.findByName(name);
     }
 
+    @PostMapping("/{id}/image")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException {
+        return constellationService.uploadImage(id, body);
+    }
 }

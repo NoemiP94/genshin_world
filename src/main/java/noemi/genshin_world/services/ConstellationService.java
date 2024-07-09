@@ -1,7 +1,10 @@
 package noemi.genshin_world.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import noemi.genshin_world.entities.Character;
 import noemi.genshin_world.entities.Constellation;
+import noemi.genshin_world.entities.Region;
 import noemi.genshin_world.exceptions.NotFoundException;
 import noemi.genshin_world.payloads.constellation.ConstellationDTO;
 import noemi.genshin_world.repositories.ConstellationDAO;
@@ -11,7 +14,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -20,6 +25,8 @@ public class ConstellationService {
     private ConstellationDAO constellationDAO;
     @Autowired
     private CharacterService characterService;
+    @Autowired
+    private Cloudinary cloudinary;
     public Constellation saveConstellation(ConstellationDTO body){
         Constellation constellation = new Constellation();
         Character character = characterService.findById(body.character_id());
@@ -52,5 +59,13 @@ public class ConstellationService {
 
     public Constellation findByName(String name){
         return constellationDAO.findByName(name).orElseThrow(()-> new NotFoundException(name));
+    }
+
+    public String uploadImage(UUID id, MultipartFile file) throws IOException {
+        Constellation constellation = constellationDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
+        String url = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+        constellation.setImage(url);
+        constellationDAO.save(constellation);
+        return url;
     }
 }

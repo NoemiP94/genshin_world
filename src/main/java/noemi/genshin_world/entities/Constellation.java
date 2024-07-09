@@ -27,4 +27,5 @@ public class Constellation {
     @OneToOne
     @JoinColumn(name = "character_id")
     private Character character;
+    private String image;
 }
