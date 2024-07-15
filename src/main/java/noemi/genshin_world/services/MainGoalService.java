@@ -2,6 +2,7 @@ package noemi.genshin_world.services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import noemi.genshin_world.entities.Goal;
 import noemi.genshin_world.entities.MainGoal;
 import noemi.genshin_world.entities.Region;
 import noemi.genshin_world.exceptions.NotFoundException;

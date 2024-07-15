@@ -1,5 +1,6 @@
 package noemi.genshin_world.controller;
 
+import noemi.genshin_world.entities.Goal;
 import noemi.genshin_world.entities.MainGoal;
 import noemi.genshin_world.exceptions.BadRequestException;
 import noemi.genshin_world.payloads.mainGoal.MainGoalDTO;
@@ -68,4 +69,5 @@ public class MainGoalController {
     public String uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile body) throws IOException {
         return mainGoalService.uploadImage(id, body);
     }
+
 }
