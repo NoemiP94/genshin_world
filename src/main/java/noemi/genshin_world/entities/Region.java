@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties({"characterList", "domainList"})
+@JsonIgnoreProperties({"characterList"})
 public class Region {
     @Id
     @GeneratedValue
