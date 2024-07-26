@@ -3,16 +3,18 @@
 This project allows users to manage in all its parts an application about Genshin Impact's videogame. 
 You can handle:
 
- - Regions and Places of Teyvat
- - Artifacts
- - Domains
- - Main Goals and Goals
- - Materials
- - Weapons
- - Enemies
- - Characters ( plus Constellations and Talents)
- - a Blogpost
- - all users that can manage the application
+ - Regions and Places of Teyvat 🌍
+ - Artifacts🧩
+ - Domains 🔷
+ - Main Goals and Goals✅
+ - Materials🌸
+ - Weapons 🗡️
+ - Enemies 👾
+ - Characters 🧙‍♀️( plus Constellations✨ and Talents🎭)
+ - a Blogpost📰
+ - Users👤 (only ADMIN account)
+
+ All registered users can manage the application
  
  This project provides all basic CRUD operations and some other filters (like filter by name or by type) and uploading images.
 
