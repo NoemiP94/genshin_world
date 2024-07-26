@@ -25,7 +25,7 @@ This project was developed using **Java Spring Boot**
 3. Copy the content of `env.example` file in `env.properties` file and fill in the fields with your data (server port used is 3001)
    - To use this project, it's necessary have a Cloudinary account and a Database handler (I use PostegreSQL and PgAdmin4)
  4. Run the project
-     - To view API documentation, import the `api_doc.yaml` file into Postman --
+     - To view API documentation, import the `api_doc.yaml` file into Postman
     ❗DISCLAIMER: it's necessary create an admin account: you can create in the right table of your database or using the  /register endpoint in Postman❗
     
 5. You can use this in a frontend app downloading the following project :
