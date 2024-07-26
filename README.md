@@ -35,6 +35,7 @@ This project was developed using **Java Spring Boot**
 ## 🖊️ Author
 
 Noemi Pusceddu 🦋
+
 🧑‍💻 [LinkedIn](https://www.linkedin.com/in/noemi-pusceddu-developer/)
 
 
