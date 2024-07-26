@@ -22,7 +22,7 @@ This project was developed using **Java Spring Boot**
 
 1. Download this project from **GitHub** and clone it on your PC
 2. Open it in your IDE (mine is IntelliJ) and create an `env.properties` file at the same level of `env.example` file
-3. Copy the content of `env.example` file in `env.properties` file and fill in the fields with your data (server port used is 3001)
+3. Copy the content of `env.example` file in `env.properties` file and fill in the fields with your data
    - To use this project, it's necessary have a Cloudinary account and a Database handler (I use PostegreSQL and PgAdmin4)
  4. Run the project
      - To view API documentation, import the `api_doc.yaml` file into Postman
