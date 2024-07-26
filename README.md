@@ -14,7 +14,7 @@ You can handle:
  - a Blogpost
  - all users that can manage the application
  
- This project provides all basic CRUD operations and some other filter (like filter by name or by type) and uploading images.
+ This project provides all basic CRUD operations and some other filters (like filter by name or by type) and uploading images.
 
 ## ⚙️ How to install
 
